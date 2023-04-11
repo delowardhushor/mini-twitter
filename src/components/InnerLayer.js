@@ -10,11 +10,15 @@
    KeyboardAvoidingView,
    View,
  } from 'react-native';
+import { useSelector } from 'react-redux';
 import { Colors } from '../styles';
+import Header from './Header';
 
  const InnerLayer = ({noPadding, children}) => {
+
+    const {token} = useSelector(state => state.auth)
  
-   return (
+    return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : null}
             style={{ flex: 1, backgroundColor:Colors.White }}
@@ -30,6 +34,12 @@ import { Colors } from '../styles';
                   />
                 : null } */}
 
+                    {token ?
+                        <Header />
+                    : null }
+
+
+
                   <View style={[styles.innerContent, {padding: noPadding ? 0 : 15}]}>{children}</View>
 
                   {/* <BottomTab /> */}
@@ -39,7 +49,7 @@ import { Colors } from '../styles';
           </View>
 
         </KeyboardAvoidingView>
-   );
+    );
  };
  
  const styles = StyleSheet.create({

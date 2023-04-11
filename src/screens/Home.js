@@ -15,6 +15,7 @@
  } from 'react-native';
 import CustomInput from '../components/CustomInput';
 import FullBtn from '../components/FullBtn';
+import Header from '../components/Header';
 import InnerLayer from '../components/InnerLayer';
 import Spacing from '../components/Spacing';
 import Tweet from '../components/Tweet';

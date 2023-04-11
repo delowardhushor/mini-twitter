@@ -36,15 +36,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
           <Spacing horizontal={10} />
 
           <View>
-            <Text>{tweetData?.user?.username}</Text>
-            <Text>{tweetData?.user?.email}</Text>
-            <Text style={globalStyle.smText} >{moment(tweetData.published).fromNow()}</Text>
+            <Text style={globalStyle.bigText} >{tweetData?.user?.username}</Text>
+            {/* <Text style={globalStyle.baseFont}>{tweetData?.user?.email}</Text> */}
+            <Spacing vertical={3} />
+            <Text style={[globalStyle.smText, globalStyle.lightFontColor]} >{moment(tweetData.published).fromNow()}</Text>
           </View> 
 
         </View>
 
-        <Spacing vertical={10} />
-
+        <Spacing vertical={20} />
 
         <View>
           <Text style={globalStyle.regularText} >{tweetData.content}</Text>
@@ -52,12 +52,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
         <Spacing vertical={15} />
 
-        <View style={styles.hr} />
+        {/* <View style={styles.hr} /> */}
 
 
-        <View style={[globalStyle.rowCenteraround, styles.bottomSection]} >
+        {/* <View style={[globalStyle.rowCenteraround, styles.bottomSection]} >
           <Text>1.5k likes</Text>
-        </View>
+        </View> */}
 
         <View style={styles.hr} />
 

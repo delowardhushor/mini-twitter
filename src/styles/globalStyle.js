@@ -63,6 +63,13 @@ export const useGlobalStyle = () => {
       fontSize:11, 
       color:Colors.Black
     },
+    bgText:{
+      fontSize:16, 
+      color:Colors.Black
+    },
+    lightFontColor:{
+      color:Colors.LightFont
+    },
     baseFont:{
       color: Colors.BaseFont,
     },
