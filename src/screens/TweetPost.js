@@ -16,6 +16,7 @@
    TextInput,
    Pressable,
  } from 'react-native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useSelector } from 'react-redux';
 import CustomInput from '../components/CustomInput';
 import FullBtn from '../components/FullBtn';
@@ -81,7 +82,7 @@ import { Notify, OnLoginSuccess, ValidateEmail } from '../uti/uti';
                     <View>
                         <Text style={globalStyle.bgText} >{user.email}</Text>
                         <Spacing vertical={3} />
-                        <Text style={[globalStyle.smText, globalStyle.textBold, globalStyle.lightFontColor]} >Public</Text>
+                        <Text style={[globalStyle.smText, globalStyle.textBold, globalStyle.lightFontColor]} ><AntDesign name="earth" /> Public</Text>
                     </View>
                 </View>
 
@@ -140,7 +141,9 @@ import { Notify, OnLoginSuccess, ValidateEmail } from '../uti/uti';
         height:50,
         width:50,
         marginRight:10,
-        borderRadius:30
+        borderRadius:30,
+        borderWidth:1,
+        borderColor:Colors.Border
     }
     
  });

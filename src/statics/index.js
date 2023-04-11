@@ -11,5 +11,6 @@ export const AllNavigations = {
 }
 
 export const AllImages = {
-    avaterPlaceholder: require("./../assets/images/user-placeholder.png")
+    avaterPlaceholder: require("./../assets/images/user-placeholder.png"),
+    logo: require("./../assets/images/logo.png")
 }

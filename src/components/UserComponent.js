@@ -40,7 +40,7 @@ import ChipBtn from './ChipBtn';
     let res
 
     if(following){
-      res = await AllServices.User.Follow(userData.id)
+      res = await AllServices.User.UnFollow(userData.id)
     }else{
       res = await AllServices.User.Follow(userData.id)
     }

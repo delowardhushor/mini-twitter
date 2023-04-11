@@ -10,13 +10,14 @@
    KeyboardAvoidingView,
    View,
    useWindowDimensions,
+   Image,
  } from 'react-native';
 import CustomInput from '../components/CustomInput';
 import FullBtn from '../components/FullBtn';
 import InnerLayer from '../components/InnerLayer';
 import Spacing from '../components/Spacing';
 import AllServices from '../services';
-import { AllNavigations } from '../statics';
+import { AllImages, AllNavigations } from '../statics';
 import { Colors, GlobalStyle } from '../styles';
 import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
@@ -76,9 +77,16 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
                 <View style={{height:height, justifyContent:'center'}} >
 
+                    <Image
+                        source={AllImages.logo}
+                        style={styles.logo}
+                    />
+
+                    <Spacing vertical={30} />
+
                     <Text style={globalStyle.hugeText} >Create your Account</Text>
 
-                    <Spacing vertical={50} />
+                    <Spacing vertical={20} />
 
                     <CustomInput 
                         placeholder="Email"
@@ -159,7 +167,11 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
     innerContent: {
         flex: 1,
     },
-    
+    logo:{
+        height:150,
+        width:150,
+        alignSelf:'center'
+    }
  });
  
 export default SignUp;

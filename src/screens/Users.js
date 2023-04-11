@@ -42,6 +42,7 @@ import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
     useEffect(() => {
 
+        Setusers([])
         Loadusers()
 
     }, [activeData])

@@ -13,6 +13,7 @@
    ActivityIndicator,
    FlatList,
  } from 'react-native';
+import ChipBtn from '../components/ChipBtn';
 import CustomInput from '../components/CustomInput';
 import FullBtn from '../components/FullBtn';
 import Header from '../components/Header';
@@ -20,10 +21,11 @@ import InnerLayer from '../components/InnerLayer';
 import Spacing from '../components/Spacing';
 import Tweet from '../components/Tweet';
 import AllServices from '../services';
+import { AllNavigations } from '../statics';
 import { Colors, GlobalStyle } from '../styles';
 import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
- const Home = ({noPadding, children}) => {
+ const Home = ({navigation}) => {
 
     const { width, height } = useWindowDimensions()
 
@@ -84,14 +86,39 @@ import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
                 }
                 onEndReached={() => !allLoadDone ? LoadTweets(currentPage + 1) : {}}
                 ListFooterComponent={
-                    <View style={{alignItems:'center', justifyContent:'center', height:50}} >
+                    <View style={{alignItems:'center', justifyContent:'center', minHeight:50}} >
                       {!allLoadDone ?
                         <ActivityIndicator 
                           color={Colors.BaseColor}
                           size="small"
                         />
                       :
-                        <Text style={globalStyle.smText} >No More Data</Text>
+                      <>
+                            {tweets.length == 0 ? 
+                            <>
+                                <Spacing  vertical={150} />
+
+                                <Text style={[globalStyle.regularText, globalStyle.textBold]} >Looks like your timeline is empty.</Text>
+                                <Spacing  vertical={8} />
+                                <ChipBtn 
+                                    title="Let's get some followings"
+                                    active
+                                    onPress={() => navigation.navigate(AllNavigations.Users)}
+                                />
+                                <Spacing  vertical={5} />
+
+                                <Text style={globalStyle.smText} >OR</Text>
+                                <Spacing  vertical={5} />
+                                <ChipBtn 
+                                    title="Refresh"
+                                    active
+                                    onPress={() => LoadTweets()}
+                                />
+                            </>
+                            :
+                                <Text style={globalStyle.smText} >No More Data</Text>
+                            }
+                        </>
                       }
                     </View>
                 }
