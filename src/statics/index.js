@@ -7,6 +7,7 @@ export const AllNavigations = {
     Search: "Search",
     TweetPost: "TweetPost",
     Users: "Users",
+    Profile: "Profile"
 }
 
 export const AllImages = {

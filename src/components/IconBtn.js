@@ -14,12 +14,12 @@
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { Colors } from '../styles';
 
-const IconBtn = ({onPress, icon}) => {
+const IconBtn = ({onPress, icon, noBorder}) => {
  
    return (
       <Pressable 
         onPress={onPress}
-        style={styles.IconBtn}
+        style={[styles.IconBtn,{borderWidth:noBorder ? 0 : 1}]}
       >
         <AntDesign 
           color={Colors.BaseFont}

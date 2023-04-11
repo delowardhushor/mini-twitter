@@ -24,11 +24,11 @@ import InnerLayer from '../components/InnerLayer';
 import Spacing from '../components/Spacing';
 import Tweet from '../components/Tweet';
 import AllServices from '../services';
-import { AllImages } from '../statics';
+import { AllImages, AllNavigations } from '../statics';
 import { Colors, GlobalStyle } from '../styles';
-import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
+import { Notify, OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
- const TweetPost = ({noPadding, children}) => {
+ const TweetPost = ({navigation}) => {
 
     const { width, height } = useWindowDimensions()
 
@@ -38,11 +38,28 @@ import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
     
     const [content, Setcontent] = useState("")
     
-    const [loadingMore, SetloadingMore] = useState(false)
+    const [loading, Setloading] = useState(false)
 
     const tweetInput = useRef(null)
 
     const Submit = async () => {
+
+        if(!content){
+            Notify("Please write something", "error")
+            return false
+        }
+
+        Setloading(true)
+
+        const res = await AllServices.Tweets.PostTweet({
+            content
+        })
+
+        if(res){
+            navigation.navigate(AllNavigations.Profile)
+        }
+
+        Setloading(false)
 
     }
     
@@ -76,6 +93,7 @@ import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
                     multiline={true}
                     style={[styles.input]} 
                     onChangeText={text => Setcontent(text)}
+                    textAlignVertical="top"
                     maxLength={160}
                     placeholder="Let's tweet your thought, it's easy and free"
                 />
@@ -86,6 +104,8 @@ import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
                 <FullBtn 
                     title="Tweet"
+                    onPress={Submit}
+                    loading={loading}
                 />
 
                 

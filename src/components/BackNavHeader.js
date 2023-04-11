@@ -14,11 +14,10 @@ import React from 'react';
  } from 'react-native';
 import { AllNavigations } from '../statics';
 import { Colors, GlobalStyle } from '../styles';
-import { SignOut } from '../uti/uti';
 import IconBtn from './IconBtn';
 import Spacing from './Spacing';
 
- const Header = ({onPress, title}) => {
+ const BackNavHeader = ({title}) => {
 
   const navigation = useNavigation()
 
@@ -26,32 +25,17 @@ import Spacing from './Spacing';
  
    return (
       <View 
-        style={[styles.Header]}
+        style={[styles.BackNavHeader]}
       >
-        <Text style={globalStyle.bigText} >Mini Twitter</Text>
+        <IconBtn 
+          icon="arrowleft"
+          onPress={navigation.goBack}
+          noBorder
+        />
 
-        <View style={globalStyle.rowCenter} >
+        <Spacing horizontal={15} />
 
-          <IconBtn 
-            icon="search1"
-            onPress={() => navigation.navigate(AllNavigations.Search)}
-          />
-
-          <Spacing horizontal={10} />
-
-          <IconBtn 
-            icon="user"
-            onPress={() => navigation.navigate(AllNavigations.Profile)}
-          />
-
-          <Spacing horizontal={10} />
-
-          <IconBtn 
-            icon="logout"
-            onPress={SignOut}
-          />
-
-        </View>
+        <Text style={[globalStyle.bigText, {flex:1,}]} numberOfLines={1} >{title || "Mini Twitter"}</Text>
 
       </View>
    );
@@ -59,7 +43,7 @@ import Spacing from './Spacing';
  
  const styles = StyleSheet.create({
   
-  Header:{
+  BackNavHeader:{
     height:60,
     alignItems:'center',
     justifyContent:'space-between',
@@ -71,5 +55,5 @@ import Spacing from './Spacing';
     
  });
  
- export default Header;
+ export default BackNavHeader;
  

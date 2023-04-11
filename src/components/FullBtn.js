@@ -8,19 +8,27 @@
    Text,
    useColorScheme,
    KeyboardAvoidingView,
+   ActivityIndicator,
    View,
    Pressable,
  } from 'react-native';
 import { Colors } from '../styles';
 
- const FullBtn = ({onPress, title}) => {
+ const FullBtn = ({onPress, title, loading}) => {
  
    return (
       <Pressable 
         onPress={onPress}
         style={styles.FullBtn}
       >
-        <Text style={styles.btnText} >{title}</Text>
+        {loading ?
+          <ActivityIndicator 
+            color={Colors.White}
+            size="small"
+          />
+        :
+          <Text style={styles.btnText} >{title}</Text>
+        }
       </Pressable>
    );
  };

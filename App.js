@@ -16,6 +16,10 @@ import { AllNavigations } from './src/statics';
 import Home from './src/screens/Home';
 import BottomTabIcon from './src/components/BottomTabIcon';
 import TweetPost from './src/screens/TweetPost';
+import Search from './src/screens/Search';
+import Users from './src/screens/Users';
+import Profile from './src/screens/Profile';
+import SignUp from './src/screens/SignUp';
 
 
 const Stack = createNativeStackNavigator();
@@ -33,7 +37,9 @@ const TabNav = () => {
         tabBarInactiveTintColor: Colors.BaseFont,
         // tabBarLabel:false,
         tabBarStyle:{
-          paddingTop:6
+          paddingVertical:4,
+          paddingBottom:8,
+          
         }
         
       })}
@@ -54,7 +60,7 @@ const TabNav = () => {
 
       <Tab.Screen
         name={AllNavigations.Users}
-        component={Home}
+        component={Users}
       />
 
 
@@ -82,9 +88,17 @@ const StackNav = () => {
               name={AllNavigations.SignIn}
               component={SignIn}
           />
+          <Stack.Screen
+              name={AllNavigations.SignUp}
+              component={SignUp}
+          />
         </>
       :
-        <Stack.Screen name="MainTab" component={TabNav} />
+        <>
+          <Stack.Screen name="MainTab" component={TabNav} />
+          <Stack.Screen name={AllNavigations.Search} component={Search} />
+          <Stack.Screen name={AllNavigations.Profile} component={Profile} />
+        </>
       }
           
     </Stack.Navigator> 

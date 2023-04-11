@@ -29,7 +29,7 @@ import { Colors } from '../styles';
   }
 
   // You can return any component that you like here!
-  return <AntDesign name={iconName} size={size} color={color} />;
+  return <AntDesign name={iconName} size={18} color={color} />;
 
 };
  

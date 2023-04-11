@@ -20,18 +20,21 @@ import { AllNavigations } from '../statics';
 import { Colors, GlobalStyle } from '../styles';
 import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
- const SignIn = ({navigation}) => {
+ const SignUp = ({navigation}) => {
 
     const { width, height } = useWindowDimensions()
 
     const globalStyle = GlobalStyle.useGlobalStyle()
 
     const [showPass, SetshowPass] = useState(false)
+    const [showConPass, SetshowConPass] = useState(false)
     const [loading, Setloading] = useState(false)
     const [errors, Seterrors] = useState({})
     const [submitData, SetsubmitData] = useState({
-        email:"janedoe@doe.com",
-        password:"notsosecurepassword"
+        "username":"delowar3",
+        "email": "delowar3@xyz.com",
+        "password": "Server123#",
+        "conPassword": "notsosecurepassword"
     })
 
     const Submit = async () => {
@@ -50,6 +53,10 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
             validation.password = "Passowrd required"
         }
 
+        if(submitData.password !== submitData.conPassword){
+            validation.conPassword = "Invalid confirm password "
+        }
+
         if(!isObjEmpty(validation)){
             Seterrors(validation)
             return false
@@ -57,18 +64,9 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
         Setloading(true)
 
-        const token = await AllServices.Auth.SignIn(submitData)
+        await AllServices.Auth.SignUp(submitData, navigation)
 
         Setloading(false)
-
-
-        if(token){
-            OnLoginSuccess({
-                email:submitData.email,
-                token:token
-            })
-        }
-
     }
  
     return (
@@ -85,6 +83,16 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
                     <CustomInput 
                         placeholder="Email"
                         leftIcon="mail"
+                        error={errors.username}
+                        value={submitData.username}
+                        onChangeText={username => SetsubmitData({...submitData, ...{username}})}
+                    />
+
+                    <Spacing vertical={15} />
+
+                    <CustomInput 
+                        placeholder="Email"
+                        leftIcon="mail"
                         error={errors.email}
                         value={submitData.email}
                         onChangeText={email => SetsubmitData({...submitData, ...{email}})}
@@ -96,13 +104,24 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
                         leftIcon="lock"
                         placeholder="Password"
                         secureTextEntry={!showPass}
-                        // value="qqweqwe"
                         rightIcon={showPass ? "eye" : "eye-off"}
                         onPressRightIcon={() => SetshowPass(!showPass)}
                         error={errors.password}
                         value={submitData.password}
                         onChangeText={password => SetsubmitData({...submitData, ...{password}})}
+                    />
 
+                    <Spacing vertical={15} />
+
+                    <CustomInput 
+                        leftIcon="lock"
+                        placeholder="Password"
+                        secureTextEntry={!showConPass}
+                        rightIcon={showConPass ? "eye" : "eye-off"}
+                        onPressRightIcon={() => SetshowConPass(!showConPass)}
+                        error={errors.conPassword}
+                        value={submitData.conPassword}
+                        onChangeText={conPassword => SetsubmitData({...submitData, ...{conPassword}})}
                     />
 
                     <Spacing vertical={30} />
@@ -116,7 +135,8 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
                 <Spacing vertical={30} />
 
-                <Text style={[globalStyle.regularText, globalStyle.textCenter]} >Don't have an account? <Text onPress={() => navigation.navigate(AllNavigations.SignUp)} style={[globalStyle.baseColorFont, globalStyle.textBold]} >Sign Up</Text></Text>
+                <Text style={[globalStyle.regularText, globalStyle.textCenter]} >Already have an account? <Text onPress={() => navigation.navigate(AllNavigations.SignIn)} style={[globalStyle.baseColorFont, globalStyle.textBold]} >Sign In</Text></Text>
+
 
                 </View>
 
@@ -142,5 +162,5 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
     
  });
  
-export default SignIn;
+export default SignUp;
  
