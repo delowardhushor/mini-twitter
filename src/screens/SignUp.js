@@ -32,10 +32,10 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
     const [loading, Setloading] = useState(false)
     const [errors, Seterrors] = useState({})
     const [submitData, SetsubmitData] = useState({
-        "username":"delowar3",
-        "email": "delowar3@xyz.com",
-        "password": "Server123#",
-        "conPassword": "notsosecurepassword"
+        "username":"",
+        "email": "",
+        "password": "",
+        "conPassword": ""
     })
 
     const Submit = async () => {
