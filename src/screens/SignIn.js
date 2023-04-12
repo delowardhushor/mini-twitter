@@ -6,6 +6,7 @@
    StatusBar,
    StyleSheet,
    Text,
+   Image,
    useColorScheme,
    KeyboardAvoidingView,
    View,
@@ -16,20 +17,22 @@ import FullBtn from '../components/FullBtn';
 import InnerLayer from '../components/InnerLayer';
 import Spacing from '../components/Spacing';
 import AllServices from '../services';
+import { AllImages, AllNavigations } from '../statics';
 import { Colors, GlobalStyle } from '../styles';
-import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
+import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
- const SignIn = ({noPadding, children}) => {
+ const SignIn = ({navigation}) => {
 
     const { width, height } = useWindowDimensions()
 
     const globalStyle = GlobalStyle.useGlobalStyle()
 
     const [showPass, SetshowPass] = useState(false)
+    const [loading, Setloading] = useState(false)
     const [errors, Seterrors] = useState({})
     const [submitData, SetsubmitData] = useState({
-        email:"janedoe@doe.com",
-        password:"notsosecurepassword"
+        email:"",
+        password:""
     })
 
     const Submit = async () => {
@@ -48,7 +51,17 @@ import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
             validation.password = "Passowrd required"
         }
 
+        if(!isObjEmpty(validation)){
+            Seterrors(validation)
+            return false
+        }
+
+        Setloading(true)
+
         const token = await AllServices.Auth.SignIn(submitData)
+
+        Setloading(false)
+
 
         if(token){
             OnLoginSuccess({
@@ -66,9 +79,17 @@ import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
                 <View style={{height:height, justifyContent:'center'}} >
 
+                    <Image 
+                        source={AllImages.logo}
+                        style={styles.logo}
+                    />
+
+                    <Spacing vertical={30} />
+
+
                     <Text style={globalStyle.hugeText} >Create your Account</Text>
 
-                    <Spacing vertical={50} />
+                    <Spacing vertical={20} />
 
                     <CustomInput 
                         placeholder="Email"
@@ -83,7 +104,7 @@ import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
                     <CustomInput 
                         leftIcon="lock"
                         placeholder="Password"
-                        secureTextEntry={showPass}
+                        secureTextEntry={!showPass}
                         // value="qqweqwe"
                         rightIcon={showPass ? "eye" : "eye-off"}
                         onPressRightIcon={() => SetshowPass(!showPass)}
@@ -99,12 +120,12 @@ import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
                     <FullBtn 
                         title="Save"
                         onPress={Submit}
+                        loading={loading}
                     />
 
                 <Spacing vertical={30} />
 
-                <Text style={[globalStyle.regularText, globalStyle.textCenter]} >Already have an account? <Text style={[globalStyle.baseColorFont, globalStyle.textBold]} >Sign In</Text></Text>
-
+                <Text style={[globalStyle.regularText, globalStyle.textCenter]} >Don't have an account? <Text onPress={() => navigation.navigate(AllNavigations.SignUp)} style={[globalStyle.baseColorFont, globalStyle.textBold]} >Sign Up</Text></Text>
 
                 </View>
 
@@ -127,6 +148,12 @@ import { OnLoginSuccess, ValidateEmail } from '../uti/uti';
     innerContent: {
         flex: 1,
     },
+
+    logo:{
+        height:150,
+        width:150,
+        alignSelf:'center'
+    }
     
  });
  

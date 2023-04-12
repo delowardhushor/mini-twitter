@@ -7,8 +7,10 @@ export const AllNavigations = {
     Search: "Search",
     TweetPost: "TweetPost",
     Users: "Users",
+    Profile: "Profile"
 }
 
 export const AllImages = {
-    avaterPlaceholder: require("./../assets/images/user-placeholder.png")
+    avaterPlaceholder: require("./../assets/images/user-placeholder.png"),
+    logo: require("./../assets/images/logo.png")
 }

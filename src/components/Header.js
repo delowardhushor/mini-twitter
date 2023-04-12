@@ -1,5 +1,6 @@
 
- import React from 'react';
+ import { useNavigation } from '@react-navigation/native';
+import React from 'react';
  import {
    SafeAreaView,
    ScrollView,
@@ -11,17 +12,21 @@
    View,
    Pressable,
  } from 'react-native';
+import { AllNavigations } from '../statics';
 import { Colors, GlobalStyle } from '../styles';
+import { SignOut } from '../uti/uti';
 import IconBtn from './IconBtn';
 import Spacing from './Spacing';
 
  const Header = ({onPress, title}) => {
 
+  const navigation = useNavigation()
+
   const globalStyle = GlobalStyle.useGlobalStyle()
  
    return (
       <View 
-        style={[styles.Header, globalStyle.shadow]}
+        style={[styles.Header]}
       >
         <Text style={globalStyle.bigText} >Mini Twitter</Text>
 
@@ -29,11 +34,23 @@ import Spacing from './Spacing';
 
           <IconBtn 
             icon="search1"
+            onPress={() => navigation.navigate(AllNavigations.Search)}
           />
-          <Spacing horizontal={5} />
+
+          <Spacing horizontal={10} />
+
           <IconBtn 
-            icon="bars"
+            icon="user"
+            onPress={() => navigation.navigate(AllNavigations.Profile)}
           />
+
+          <Spacing horizontal={10} />
+
+          <IconBtn 
+            icon="logout"
+            onPress={SignOut}
+          />
+
         </View>
 
       </View>

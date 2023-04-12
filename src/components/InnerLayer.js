@@ -12,9 +12,10 @@
  } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Colors } from '../styles';
+import BackNavHeader from './BackNavHeader';
 import Header from './Header';
 
- const InnerLayer = ({noPadding, children}) => {
+ const InnerLayer = ({noPadding, backNav, children}) => {
 
     const {token} = useSelector(state => state.auth)
  
@@ -35,7 +36,15 @@ import Header from './Header';
                 : null } */}
 
                     {token ?
-                        <Header />
+                      <>
+                        {backNav ? 
+                          <BackNavHeader  
+                            title={backNav}
+                          />
+                        : 
+                          <Header />
+                        }
+                      </>
                     : null }
 
 
