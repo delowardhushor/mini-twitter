@@ -80,7 +80,7 @@ import { Notify, OnLoginSuccess, ValidateEmail } from '../uti/uti';
                         style={styles.avater}
                     />
                     <View>
-                        <Text style={globalStyle.bgText} >{user.email}</Text>
+                        <Text style={globalStyle.bgText} >{user.username}</Text>
                         <Spacing vertical={3} />
                         <Text style={[globalStyle.smText, globalStyle.textBold, globalStyle.lightFontColor]} ><AntDesign name="earth" /> Public</Text>
                     </View>

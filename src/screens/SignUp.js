@@ -75,7 +75,7 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
             <ScrollView>
 
-                <View style={{height:height, justifyContent:'center'}} >
+                <View style={{height:height * 0.8, justifyContent:'center'}} >
 
                     <Image
                         source={AllImages.logo}
@@ -89,8 +89,8 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
                     <Spacing vertical={20} />
 
                     <CustomInput 
-                        placeholder="Email"
-                        leftIcon="mail"
+                        placeholder="Username"
+                        leftIcon="user"
                         error={errors.username}
                         value={submitData.username}
                         onChangeText={username => SetsubmitData({...submitData, ...{username}})}
@@ -136,7 +136,7 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
 
                     <FullBtn 
-                        title="Save"
+                        title="Sign Up"
                         onPress={Submit}
                         loading={loading}
                     />

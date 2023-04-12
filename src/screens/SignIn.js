@@ -77,7 +77,7 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
             <ScrollView>
 
-                <View style={{height:height, justifyContent:'center'}} >
+                <View style={{height:height * 0.8, justifyContent:'center'}} >
 
                     <Image 
                         source={AllImages.logo}
@@ -87,7 +87,7 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
                     <Spacing vertical={30} />
 
 
-                    <Text style={globalStyle.hugeText} >Create your Account</Text>
+                    <Text style={globalStyle.hugeText} >Sign in into your Account</Text>
 
                     <Spacing vertical={20} />
 
@@ -118,7 +118,7 @@ import { isObjEmpty, OnLoginSuccess, ValidateEmail } from '../uti/uti';
 
 
                     <FullBtn 
-                        title="Save"
+                        title="Sign In"
                         onPress={Submit}
                         loading={loading}
                     />
